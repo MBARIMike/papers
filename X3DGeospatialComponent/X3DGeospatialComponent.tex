@@ -19,6 +19,7 @@
 \usepackage[scaled=.92]{helvet}
 \usepackage{times}
 \usepackage{latexsym}
+\usepackage{url}
 
 %% The 'graphicx' package allows for the inclusion of EPS figures.
 
@@ -116,7 +117,7 @@ We present new implementations of important X3D nodes which enable a large class
 %% copyright space is left at the bottom of the first column on the first
 %% page of your paper.
 
-The ability to use geospatially well registered geometry and geospatially informed data structures was recognized as an important concept early in the development of virtual worlds where they were to reflect the physical word. Consequently, specialized geospatial nodes found their way into the definition of the Virtual Reality Modeling Language (VRML) in the late 1990s \cite{reddy2000}. In the early 2010s, the successor to VRML --- X3D --- gained traction and became significantly more accessible by the availability of X3DOM, an openly developed JavaScript X3D interpreter and renderer \cite{behr09}(Behr et al, 2009), while webgl became a standard feature in web browsers. X3D is designed to be modular \cite{x3d05} and retains geospatial functionality in a dedicated geospatial component. Here, we present new implementations of important nodes of the geospatial component within the X3DOM code framework.
+The ability to use geospatially well registered geometry and geospatially informed data structures was recognized as an important concept early in the development of virtual worlds where they were to reflect the physical word. Consequently, specialized geospatial nodes found their way into the definition of the Virtual Reality Modeling Language (VRML) in the late 1990s \cite{reddy2000}. In the early 2010s, the successor to VRML --- X3D --- gained traction and became significantly more accessible by the availability of X3DOM, an openly developed JavaScript X3D interpreter and renderer \cite{behr09}, while webgl became a standard feature in web browsers. X3D is designed to be modular \cite{x3d05} and retains geospatial functionality in a dedicated geospatial component. Here, we present new implementations of important nodes of the geospatial component within the X3DOM code framework.
 
 
 \section{Motivation}
@@ -126,7 +127,7 @@ The X3D geospatial component occupies a unique space between the worlds of Geogr
 
 \section{The X3D geospatial component and digital globes}
 
-Digital globes, either web based such as Cesium \cite{cesium15} or standalone such as Google Earth (Google, 2015), may be seen to offer similar functionality as the X3D geospatial component. After all, they also portray the physical Earth in 3D. However, it is important to state that the X3D geospatial component targets generalized functionality and is not restricted to the planet's surface. In fact, given sufficient data sets, a digital globe could be declared in an X3D scene, and, given sufficient performance, then rendered in a geospatially enabled X3D browser. In this context a digital globe can be seen as just one of many possible applications of X3D and its geospatial component. The newly implemented nodes then could work towards enhancing such an X3D-declared, digital globe with user content such as buildings, mines or dynamic submarines, user views, or user interactions.
+Digital globes, either web based such as Cesium \cite{cesium15} or standalone such as Google Earth \cite{googleearth15}, may be seen to offer similar functionality as the X3D geospatial component. After all, they also portray the physical Earth in 3D. However, it is important to state that the X3D geospatial component targets generalized functionality and is not restricted to the planet's surface. In fact, given sufficient data sets, a digital globe could be declared in an X3D scene, and, given sufficient performance, then rendered in a geospatially enabled X3D browser. In this context a digital globe can be seen as just one of many possible applications of X3D and its geospatial component. The newly implemented nodes then could work towards enhancing such an X3D-declared, digital globe with user content such as buildings, mines or dynamic submarines, user views, or user interactions.
 
 \section{The Nodes}
 

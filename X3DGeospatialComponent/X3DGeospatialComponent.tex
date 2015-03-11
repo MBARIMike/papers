@@ -245,7 +245,13 @@ In terms of performance, the great circle interpolation suffers a bit from havin
 
 The availability of the geospatial component in a web browser via X3DOM allows for development of rich  web apps but also for very targeted application which rely exclusively on the X3D scene graph and standard X3DOM navigation functionality. We briefly describe examples for each scenario.
 
-The Monterey Bay Aquarium Research Institute designed the Spatial Temporal Oceanographic Query System (STOQS) \cite{mccann14} to create new capabilities for scientists to gain insight from their data. STOQS employs open standards and is a 100% free and open source project. It includes a web-based graphical user interface where X3D Geospatial has been integrated to enable 3D geospatial data visualization. The system uses most of the presented geospatial nodes and is actively developed.
+The Monterey Bay Aquarium Research Institute designed the Spatial Temporal Oceanographic Query System (STOQS) \cite{stoqsyoutube} to 
+create new capabilities for scientists to gain insight from \textit{in situ} sensor measurement data. STOQS employs open standards 
+and is a 100\% free and open source project. It includes a web-based graphical user interface where X3D Geospatial has been integrated 
+to enable 3D geospatial data visualization. As described in \cite{mccann14} high resolution terrain mesh data in geocentric 
+coordinates is combined with geometry built from latitude and longitude coordinates. Two specific benefits resulting from
+the improvements described in this paper ar 1) a GeoOrigin can be specified in situations where high spatial precision is required and 
+2) GeoViewpoint, with a child GeoOrigin node, provides proper orientation of the +Y axis for fly mode navigation.
 
 \begin{figure}[htbp]
 \centering
@@ -254,7 +260,7 @@ The Monterey Bay Aquarium Research Institute designed the Spatial Temporal Ocean
 \label{fig:Application_STOQS.png}
 \end{figure}
 
-A simple use case is the easily deployable and accessible visualization of the Community Fault Model for Southern California \cite{plesch07} which is a foundational data set for earthquake science and used by diverse set of geoscientists. Using the X3DOM geospatial component it was possible to make available multiple versions of the data set using limited resources under dead line pressure \cite{sger14}.
+Another simple use case is the easily deployable and accessible visualization of the Community Fault Model for Southern California \cite{plesch07} which is a foundational data set for earthquake science and used by diverse set of geoscientists. Using the X3DOM geospatial component it was possible to make available multiple versions of the data set using limited resources under dead line pressure \cite{sger14}.
 
 \begin{figure}[htbp]
 \centering

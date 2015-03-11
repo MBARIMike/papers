@@ -185,12 +185,12 @@ We implement this transformation by first calculating the quaternion representat
 
 A conceptual complication occurs when rotateYUp is requested in a GeoOrigin node in conjunction with the GeoLocation node. This will rotate the Up direction back to +Y but note that the rotation occurs not about the same point: the GeoLocation position is likely different from the position of the provided GeoOrigin (compare Fig.~\ref{fig:RotateYUp} and Fig.~\ref{fig:GeoLocationDiagram}). Therefore, an implementation cannot just skip both rotations. Instead, the full transformation path has to be traversed (by matrix multiplication): Geolocation rotation (about child origin), Geolocation translation, GeoOrigin (back) translation, rotateYUp rotation.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=3.3in]{Axes_NSEW.png}
+\includegraphics[width=6.6in]{Axes_NSEW.png}
 \caption{The left side shows the 'Geospatial Coordinate Axes Nsew Example' slightly modified from the Web3D X3D example archive as rendered by the xj3d browser, and the same example scene as rendered by X3DOM. The colored vectors are based on a single coordinate axes scene and then properly positioned at various locations by GeoLocation nodes.}
 \label{fig:Axes_NSEW.png}
-\end{figure}
+\end{figure*}
 
 \subsection{GeoViewpoint}
 

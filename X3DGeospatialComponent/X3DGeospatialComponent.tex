@@ -137,7 +137,7 @@ Before we present details on functionality and implementation of the newly avail
 
 \subsection{GeoOrigin}
 
-The GeoOrigin node is a helper node, which is deprecated but still useful for improving rendering precision due to limitations of the webGL rendering pipeline. While JavaScript uses double precision floating point numbers for any numeric operation, webGL seems to only use single precision floating point numbers. This limits precision for geocentric coordinates which are on the order of 106 meters to about 1 meter which is not sufficient for many applications (Fig.~\ref{fig:GeoOriginDiagram}). The GeoOrigin node works by providing a local origin the coordinates of which are then subtracted from node coordinates to arrive at smaller numbers to pass on to the rendering pipeline for greater precision (Fig.~\ref{fig:GeoOriginImage}).
+The GeoOrigin node is a helper node, which is deprecated but still useful for improving rendering precision due to limitations of the webGL rendering pipeline. While JavaScript uses double precision floating point numbers for any numeric operation, webGL seems to only use single precision floating point numbers. This limits precision for geocentric coordinates which are on the order of $10^{6}$ meters to about 1 meter which is not sufficient for many applications (Fig.~\ref{fig:GeoOriginDiagram}). The GeoOrigin node works by providing a local origin the coordinates of which are then subtracted from node coordinates to arrive at smaller numbers to pass on to the rendering pipeline for greater precision (Fig.~\ref{fig:GeoOriginImage}).
 
 \begin{figure}[htbp]
 \centering

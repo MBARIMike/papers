@@ -161,7 +161,7 @@ Another feature of the GeoOrgin node is the rotateYUp field. It is a somewhat di
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=2.0in]{RotateYUp.png}
-\caption{An architectural X3D scene (x3dom.org) without (left) and with (right) use of a GeoOrigin node. Without GeoOrigin lack of precision leads to rendering artefacts.}
+\caption{This slice of the earth through the equator shows how the RotateYUp rotation of the GeoOrigin field works in our implementation. The local Up direction is given at the position of the GeoOrigin which is then aligned with the Y axis. The rotation occurs about the position of the GeoOrigin point.}
 \label{fig:RotateYUp}
 \end{figure}
 

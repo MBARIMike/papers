@@ -176,9 +176,11 @@ Before we present details on functionality and implementation of the newly avail
 useful to outline the use of coordinate systems in the X3D geospatial component. While in regular
 X3D scenes the XZ plane is considered horizontal and the +Y direction as pointing vertically
 upwards, in geospatial scenes the X,Y and Z coordinates are used as geocentric coordinates. The
-origin of the geocentric coordinate system is the center of the planet, the +X direction points to 0
-degrees longitude, the +Z direction points to the north pole, and the +Y direction point to 90
-degrees longitude east. The units are meters. Using this definition allows use of any X3D node with
+origin of the geocentric coordinate system is the center of the planet. 
+In the equatorial plane, the +X direction points to 0 degrees longitude
+and the +Y direction to 90 degrees longitude east. The +Z direction points
+to the north pole.
+The units are meters. Using this definition allows use of any X3D node with
 the proper geocentric coordinates in conjunction with geospatial nodes. This may be considered
 useful in praxis where an external geospatial database provides data and also the necessary
 coordinate transformations.

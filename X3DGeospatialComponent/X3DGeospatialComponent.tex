@@ -366,7 +366,7 @@ Geoviewpoint example scene at the web3d archive.} \label{fig:GeoPositionInterpol
 In detail, the code first transforms all key values to geocentric coordinates to a new array when
 the node is encountered or was changed.  For great circle interpolation, the code then interpolates
 the geocentric coordinates for the requested key using this new array via a slerp algorithm
-(Shoemake, 1985) which has the property of constant speed, eg. linearly interpolates the arc angle
+\cite{shoemake1985} which has the property of constant speed, eg. linearly interpolates the arc angle
 between two key positions. The geovalue\_changed output is derived from the interpolated geocentric
 coordinates by inverse projection depending on the geoSystem. Finally, the  value\_changed output is
 computed from the interpolated geocentric coordinates by taking into account a GeoOrigin if

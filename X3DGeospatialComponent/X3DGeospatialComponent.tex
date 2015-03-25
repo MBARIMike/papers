@@ -91,7 +91,7 @@ implementation framework since it provides a very functional set of X3D nodes al
 selection of support functionality. In our implementations of the GeoOrigin, GeoLocation,
 GeoViewpoint and GeoPositionInterpolator nodes, we fully conform to the ISO specification and use
 well known example scenes as references for correctness. While GeoOrigin is deprecated in the v3.3
-of the specification, we demonstrate that limited precision in the webgl rendering pipeline still
+of the specification, we demonstrate that limited precision in the WebGL rendering pipeline still
 make its use desirable at least until alternative solutions are formalized and coded. GeoLocation
 and GeoViewpoint nodes require specific alignments of coordinate systems which we document in
 detail. In addition, GeoViewpoint has the property to control navigation speed which conceptually
@@ -128,7 +128,7 @@ reflect the physical word. Consequently, specialized geospatial nodes found thei
 definition of the Virtual Reality Modeling Language (VRML) in the late 1990s \cite{reddy2000}. In
 the early 2010s, the successor to VRML --- X3D --- gained traction and became significantly more
 accessible by the availability of X3DOM, an openly developed JavaScript X3D interpreter and renderer
-\cite{behr09}, while webgl became a standard feature in web browsers. X3D is designed to be modular
+\cite{behr09}, while WebGL became a standard feature in web browsers. X3D is designed to be modular
 \cite{x3d05} and retains geospatial functionality in a dedicated geospatial component. Here, we
 present new implementations of important nodes of the geospatial component within the X3DOM code
 framework.
@@ -186,8 +186,8 @@ coordinate transformations.
 \subsection{GeoOrigin}
 
 The GeoOrigin node is a helper node, which is deprecated but still useful for improving rendering
-precision due to limitations of the webGL rendering pipeline. While JavaScript uses double precision
-floating point numbers for any numeric operation, webGL seems to only use single precision floating
+precision due to limitations of the WebGL rendering pipeline. While JavaScript uses double precision
+floating point numbers for any numeric operation, WebGL seems to only use single precision floating
 point numbers. This limits precision for geocentric coordinates which are on the order of $10^{6}$
 meters to about 1 meter which is not sufficient for many applications
 (Fig.~\ref{fig:GeoOriginImage}). The GeoOrigin node works by providing a local origin the
@@ -446,7 +446,7 @@ We present new implementations of important X3D nodes which enable a large class
 applications in standard web browsers. In our implementations of the GeoOrigin, GeoLocation,
 GeoViewpoint and GeoPositionInterpolator nodes, we fully conform to the ISO specification and use
 example scenes from well known sources as references for correctness. We demonstrate that limited
-precision in the webgl rendering pipeline still make the availability of a GeoOrigin desirable at
+precision in the WebGL rendering pipeline still make the availability of a GeoOrigin desirable at
 least until alternative solutions are formalized and coded. GeoLocation and GeoViewpoint nodes
 require specific alignments of coordinate systems which we document in detail including the
 treatment of the rotateYUp field. In addition, GeoViewpoint has the property to control navigation

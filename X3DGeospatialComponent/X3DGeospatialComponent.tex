@@ -398,7 +398,11 @@ formats which are not geospatially registered but would be ideal for use in comb
 geospatial nodes. The geocentric coordinates for such non-geospatial meshes need to be 
 precalculated.
 
-The GeoOriginTransform node applies to its children geometries the correct translation and optional rotateYUp rotation provided by the GeoOrigin child node. This lets the non-geospatial node be used together with geospatial nodes with the same GeoOrigin. The GeoOriginTransform has the option to ignore the GeoOrigin translation and just apply the rotateYUp rotation for the situation where the non-geospatial node's coordinates already account for this translation.
+The GeoOriginTransform node applies to its children geometries the correct translation and 
+optional rotateYUp rotation provided by the GeoOrigin child node. This lets the non-geospatial 
+node be used together with geospatial nodes with the same GeoOrigin. The GeoOriginTransform has 
+the option to ignore the GeoOrigin translation and just apply the rotateYUp rotation for the 
+situation where the non-geospatial node's coordinates already account for this translation.
 
 The X3DOM implementation derives the node from node X3DTransformNode and first defines the two fields it uses: GeoOrigin of type SFNode and OnlyYUp of type SFBool. X3DOM expects from such a transform node functions to return a transformation matrix and to update this matrix when an input field is changed. Thus, we define these functions, compute the proper transformation matrix based on the position of the provided GeoOrigin and return it. These few steps proved to be sufficient to arrive at the desired functionality with very reasonable effort.
 

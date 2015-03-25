@@ -391,7 +391,12 @@ The X3D PROTO and related nodes were designed to and have been used extensively 
 
 \subsection{GeoOriginTransform}
 
-The GeoOriginTransform node is an experimental transform node designed for the situation where a non-geospatial node would be convenient to use and as such would not support a GeoOrigin child node directly. For example, X3DOM offers a facility to load meshes defined in various binary formats which are not geospatially registered but would be ideal to use for large data sets. The geocentric coordinates for such non-geospatial meshes need to be precalculated.
+The GeoOriginTransform node is an experimental transform node designed for the situation where 
+a non-geospatial node would be convenient to use and as such would not support a GeoOrigin child 
+node directly. For example, X3DOM offers a facility to load meshes defined in various binary 
+formats which are not geospatially registered but would be ideal for use in combination with 
+geospatial nodes. The geocentric coordinates for such non-geospatial meshes need to be 
+precalculated.
 
 The GeoOriginTransform node applies to its children geometries the correct translation and optional rotateYUp rotation provided by the GeoOrigin child node. This lets the non-geospatial node be used together with geospatial nodes with the same GeoOrigin. The GeoOriginTransform has the option to ignore the GeoOrigin translation and just apply the rotateYUp rotation for the situation where the non-geospatial node's coordinates already account for this translation.
 

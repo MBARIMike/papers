@@ -399,8 +399,8 @@ geospatial nodes. The geocentric coordinates for such non-geospatial meshes need
 precalculated.
 
 The GeoOriginTransform node applies to its children geometries the correct translation and 
-optional rotateYUp rotation provided by the GeoOrigin child node. This lets the non-geospatial 
-node be used together with geospatial nodes with the same GeoOrigin. The GeoOriginTransform has 
+optional rotateYUp rotation provided by the GeoOrigin child node. This allows combining 
+non-geospatial nodes together with geospatial nodes using the same GeoOrigin. The GeoOriginTransform has 
 the option to ignore the GeoOrigin translation and just apply the rotateYUp rotation for the 
 situation where the non-geospatial node's coordinates already account for this translation.
 

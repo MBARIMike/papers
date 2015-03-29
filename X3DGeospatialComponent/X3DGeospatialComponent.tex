@@ -267,8 +267,8 @@ the GeoLocation node. This will rotate the Up direction back to +Y but note that
 not about the same point: the GeoLocation position is likely different from the position of the
 provided GeoOrigin (compare Fig.~\ref{fig:RotateYUp} and Fig.~\ref{fig:GeoLocationDiagram}).
 Therefore, an implementation cannot just skip both rotations. Instead, the full transformation path
-has to be traversed (by matrix multiplication): Geolocation rotation (about child origin),
-Geolocation translation, GeoOrigin (back) translation, rotateYUp rotation.
+has to be traversed (by matrix multiplication): GeoLocation rotation (about child origin),
+GeoLocation translation, GeoOrigin (back) translation, rotateYUp rotation.
 
 \begin{figure*}[htbp] \centering \includegraphics[width=6.6in]{Axes_NSEW.png} \caption{The left side
   shows the 'Geospatial Coordinate Axes Nsew Example' slightly modified from the Web3D X3D example
@@ -291,8 +291,8 @@ In the X3DOM framework a Viewpoint node is expected to deliver a view matrix on 
 first computes a viewpoint rotation matrix $M_{vr}$ as the product $M_r \times M_o$ of a rotation
 matrix $M_r$ and the node provided orientation $M_o$ converted to matrix where $M_r$ is computed as
 in a GeoLocation node including the adjustments for rotateYUp using the position of the
-Geoviewpoint. Finally, the view matrix is derived as the inverse of the product $M_t \times M_{vr}$
-of the translation matrix $M_t$ constructed from the Geoviewpoint position and the viewpoint
+GeoViewpoint. Finally, the view matrix is derived as the inverse of the product $M_t \times M_{vr}$
+of the translation matrix $M_t$ constructed from the GeoViewpoint position and the viewpoint
 rotation matrix $M_{vr}$.
 
 One additional field of type SFBool called elevationScaling is introduced. It controls the use of
@@ -305,7 +305,7 @@ elevation scaled speed not as absolute speed but as a factor to the user defined
 
 The ISO specification does not elaborate on if or how elevation scaling should be updated during
 navigation. For many purposes it may suffice to base initial navigation speed on the elevation of
-the Geoviewpoint and ignore changes of avatar elevation during navigation. In our X3DOM
+the GeoViewpoint and ignore changes of avatar elevation during navigation. In our X3DOM
 implementation, however, the speed is updated frequently which allows for seamless exploration from
 great height at satellite elevation down to the height of a person walking. As the implementation of
 elevation scaling dynamically updates speed, it relies on getViewMatrix() being called from
@@ -358,7 +358,7 @@ coordinates. The elevation coordinate is linearly interpolated in both interpola
 \begin{figure}[htbp] \centering \includegraphics[width=3.3in]{GeoPositionInterpolator1.png}
   \caption{A GeoPositionInterpolator node interpolates the latitude and longitude coordinates of a
   double cone linearly between London and San Francisco. The scene is adopted from the A2 Animated
-Geoviewpoint example scene at the web3d archive.} \label{fig:GeoPositionInterpolator1.png}
+GeoViewpoint example scene at the web3d archive.} \label{fig:GeoPositionInterpolator1.png}
 \end{figure}
 
 \begin{figure}[htbp] \centering \includegraphics[width=3.3in]{GeoPositionInterpolator2.png}

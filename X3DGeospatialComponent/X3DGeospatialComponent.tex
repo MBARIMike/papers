@@ -1,6 +1,6 @@
-\documentclass{acmsiggraph}                     % final
+%\documentclass{acmsiggraph}                     % final
 %\documentclass[annualconference]{acmsiggraph}  % final (annual conference)
-%\documentclass[review]{acmsiggraph}            % review \documentclass[widereview]{acmsiggraph}
+\documentclass[review]{acmsiggraph}            % review \documentclass[widereview]{acmsiggraph}
 %% wide-spaced review \documentclass[preprint]{acmsiggraph}          % preprint
 
 %% Uncomment one of the five lines above depending on where your paper is
@@ -40,7 +40,7 @@
 
 %%\usepackage[caption=false]{subfig}
 
-%%\onlineid{paper1041}
+\onlineid{paper1016}
 
 %% Paper title.
 
@@ -54,7 +54,7 @@ and GeoPositionInterpolator nodes}
 %% Author and Affiliation (multiple authors).
 
 
-\author{Andreas Plesch\thanks{e-mail: andreasplesch@gmail.com}\\Harvard University \and Michael
+\author{Andreas Plesch\thanks{e-mail: andreasplesch@gmail.com}\\Harvard University \and Mike
 McCann\thanks{e-mail: mccann@mbari.org}\\MBARI \and Don Brutzman\thanks{e-mail:
 brutzman@nps.edu}\\Naval Postgraduate School}
 
@@ -69,9 +69,11 @@ brutzman@nps.edu}\\Naval Postgraduate School}
 
 \teaser{
     \includegraphics[width=7.0in]{X3DGeospatialTeaser.png}
-    \caption{Screen capture of the STOQS web application showing underwater sensor data, models 
-    of instrumentation, and the terrain of Monterey Bay, California. X3D Geospatial nodes are used 
-    to enable effective interactive exploration of high resolution geospatial data.}
+    \caption{Screen capture of the STOQS web application showing underwater sensor data, models
+      of instrumentation, and the terrain of Monterey Bay, California. The X3D geospatial 
+      component provides great flexibility for creating custom representations of geospatial 
+      data. This visualization applies 10x vertical exaggeration to enable effective interactive 
+      exploration of upper ocean biological data.}
     \label{fig:X3DGeospatialTeaser}
 }
 
@@ -92,7 +94,7 @@ selection of support functionality. In our implementations of the GeoOrigin, Geo
 GeoViewpoint and GeoPositionInterpolator nodes, we fully conform to the ISO specification and use
 well known example scenes as references for correctness. While GeoOrigin is deprecated in the v3.3
 of the specification, we demonstrate that limited precision in the WebGL rendering pipeline still
-make its use desirable at least until alternative solutions are formalized and coded. GeoLocation
+makes its use desirable at least until alternative solutions are formalized and coded. GeoLocation
 and GeoViewpoint nodes require specific alignments of coordinate systems which we document in
 detail. In addition, GeoViewpoint has the property to control navigation speed which conceptually
 conflicts with user speed control. We resolve this conflict by using relative speed and also make
@@ -148,7 +150,7 @@ environment.  Examples include geological and geophysical data of the subsurface
 climate data, or oceanographic data concerned with part or the full volume of what occupies the
 majority of the planet. In fact, global data sets benefit strongly from a 3D analysis and
 visualization environment since the shape of the geoid is not suited to faithful projection onto a
-2D plane. The X3D geospatial components addresses this need in terms of visualization. At the same
+2D plane. The X3D geospatial component addresses this need in terms of visualization. At the same
 time it is part of the full X3D scene graph which provides the basis for interactive modes of
 exploration of geospatial data sets which are generally not targeted by GIS. At a practical level,
 essentially unlimited sharing of visualizations of geospatial 3D data sets becomes straightforward
@@ -265,8 +267,8 @@ the GeoLocation node. This will rotate the Up direction back to +Y but note that
 not about the same point: the GeoLocation position is likely different from the position of the
 provided GeoOrigin (compare Fig.~\ref{fig:RotateYUp} and Fig.~\ref{fig:GeoLocationDiagram}).
 Therefore, an implementation cannot just skip both rotations. Instead, the full transformation path
-has to be traversed (by matrix multiplication): Geolocation rotation (about child origin),
-Geolocation translation, GeoOrigin (back) translation, rotateYUp rotation.
+has to be traversed (by matrix multiplication): GeoLocation rotation (about child origin),
+GeoLocation translation, GeoOrigin (back) translation, rotateYUp rotation.
 
 \begin{figure*}[htbp] \centering \includegraphics[width=6.6in]{Axes_NSEW.png} \caption{The left side
   shows the 'Geospatial Coordinate Axes Nsew Example' slightly modified from the Web3D X3D example
@@ -289,8 +291,8 @@ In the X3DOM framework a Viewpoint node is expected to deliver a view matrix on 
 first computes a viewpoint rotation matrix $M_{vr}$ as the product $M_r \times M_o$ of a rotation
 matrix $M_r$ and the node provided orientation $M_o$ converted to matrix where $M_r$ is computed as
 in a GeoLocation node including the adjustments for rotateYUp using the position of the
-Geoviewpoint. Finally, the view matrix is derived as the inverse of the product $M_t \times M_{vr}$
-of the translation matrix $M_t$ constructed from the Geoviewpoint position and the viewpoint
+GeoViewpoint. Finally, the view matrix is derived as the inverse of the product $M_t \times M_{vr}$
+of the translation matrix $M_t$ constructed from the GeoViewpoint position and the viewpoint
 rotation matrix $M_{vr}$.
 
 One additional field of type SFBool called elevationScaling is introduced. It controls the use of
@@ -303,7 +305,7 @@ elevation scaled speed not as absolute speed but as a factor to the user defined
 
 The ISO specification does not elaborate on if or how elevation scaling should be updated during
 navigation. For many purposes it may suffice to base initial navigation speed on the elevation of
-the Geoviewpoint and ignore changes of avatar elevation during navigation. In our X3DOM
+the GeoViewpoint and ignore changes of avatar elevation during navigation. In our X3DOM
 implementation, however, the speed is updated frequently which allows for seamless exploration from
 great height at satellite elevation down to the height of a person walking. As the implementation of
 elevation scaling dynamically updates speed, it relies on getViewMatrix() being called from
@@ -356,7 +358,7 @@ coordinates. The elevation coordinate is linearly interpolated in both interpola
 \begin{figure}[htbp] \centering \includegraphics[width=3.3in]{GeoPositionInterpolator1.png}
   \caption{A GeoPositionInterpolator node interpolates the latitude and longitude coordinates of a
   double cone linearly between London and San Francisco. The scene is adopted from the A2 Animated
-Geoviewpoint example scene at the web3d archive.} \label{fig:GeoPositionInterpolator1.png}
+GeoViewpoint example scene at the web3d archive.} \label{fig:GeoPositionInterpolator1.png}
 \end{figure}
 
 \begin{figure}[htbp] \centering \includegraphics[width=3.3in]{GeoPositionInterpolator2.png}
@@ -419,7 +421,7 @@ The implementation of this node required in depth experience with the X3DOM code
 \section{Applications}
 
 The availability of the geospatial component in a web browser via X3DOM allows for development of
-rich  web apps but also for very targeted application which rely exclusively on the X3D scene graph
+rich  web apps but also for very targeted applications which rely exclusively on the X3D scene graph
 and standard X3DOM navigation functionality. We briefly describe examples for each scenario.
 
 The Monterey Bay Aquarium Research Institute designed the Spatial Temporal Oceanographic Query

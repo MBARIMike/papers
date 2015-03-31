@@ -53,11 +53,8 @@ and GeoPositionInterpolator nodes}
 
 %% Author and Affiliation (multiple authors).
 
-
 \author{Andreas Plesch\thanks{e-mail: andreasplesch@gmail.com}\\Harvard University \and Mike
-McCann\thanks{e-mail: mccann@mbari.org}\\MBARI 
-
-%% \and Don Brutzman\thanks{e-mail: brutzman@nps.edu}\\Naval Postgraduate School}
+McCann\thanks{e-mail: mccann@mbari.org}\\MBARI}
 
 %% Keywords that describe your work.
 
@@ -126,7 +123,7 @@ was integrated into current, stable releases of the X3DOM distribution available
 
 The ability to use geospatially well registered geometry and geospatially informed data structures
 was recognized as an important concept early in the development of virtual worlds where they were to
-reflect the physical word. Consequently, specialized geospatial nodes found their way into the
+reflect the physical world. Consequently, specialized geospatial nodes found their way into the
 definition of the Virtual Reality Modeling Language (VRML) in the late 1990s \cite{reddy2000}. In
 the early 2010s, the successor to VRML --- X3D --- gained traction and became significantly more
 accessible by the availability of X3DOM, an openly developed JavaScript X3D interpreter and renderer
@@ -167,8 +164,9 @@ surface. In fact, given sufficient data sets, a digital globe could be declared 
 and, given sufficient performance, then rendered in a geospatially enabled X3D browser. In this
 context a digital globe can be seen as just one of many possible applications of X3D and its
 geospatial component. The newly implemented nodes then could work towards enhancing such an
-X3D-declared, digital globe with user content such as buildings, moving vehicles, environmental 
-data representations, user views, or user interactions.
+X3D-declared, digital globe with user content such as topography, bathymetry, surface imagery, 
+overlays, buildings, roads, surface features, sensor data, and vehicles of all types, complemented
+by user views and user interaction hints.
 
 \section{The Nodes}
 
@@ -200,7 +198,7 @@ on to the rendering pipeline for greater precision (Fig.~\ref{fig:GeoOriginDiagr
 
 \begin{figure}[htbp] \centering \includegraphics[width=3.3in]{GeoOriginImage.png} \caption{An
   architectural X3D scene (x3dom.org) without (left) and with (right) use of a GeoOrigin node.
-Without GeoOrigin lack of precision leads to rendering artefacts.} \label{fig:GeoOriginImage}
+Without GeoOrigin lack of precision leads to rendering artifacts.} \label{fig:GeoOriginImage}
 \end{figure}
 
 
@@ -256,14 +254,14 @@ child node (stippled box) is rotated to align the Y axis with the Up direction a
 position of the GeoLocation.} \label{fig:GeoLocationDiagram} \end{figure}
 
 We implement this transformation by first calculating the quaternion representations $q_X$ and $q_Z$
-of two rotations: about the X axis by $180 - latitude$ degrees to align +Y with local Up and about
-the Z axis by $90 + longitude$ degrees to align -Z with longitude towards north. The product
+of two rotations: about the X axis by ($180 - latitude$) degrees to align +Y with local Up and about
+the Z axis by ($90 + longitude$) degrees to align -Z with longitude towards north. The product
 $q_{Z}q_{X}$ of these quaternions is converted to a rotation matrix $M_r$. Then a transformation
 matrix $M_t$ is constructed for a translation to the GeoLocation position. The final transformation
 matrix is calculated as the product of the rotation and translation matrices $M_t \times M_r$.
 
 A conceptual complication occurs when rotateYUp is requested in a GeoOrigin node in conjunction with
-the GeoLocation node. This will rotate the Up direction back to +Y but note that the rotation occurs
+the GeoLocation node. This node combination rotates the Up direction back to +Y but note that the rotation occurs
 not about the same point: the GeoLocation position is likely different from the position of the
 provided GeoOrigin (compare Fig.~\ref{fig:RotateYUp} and Fig.~\ref{fig:GeoLocationDiagram}).
 Therefore, an implementation cannot just skip both rotations. Instead, the full transformation path
@@ -298,10 +296,10 @@ rotation matrix $M_{vr}$.
 One additional field of type SFBool called elevationScaling is introduced. It controls the use of
 navigation speed scaling by avatar elevation above ground level and is turned on (true) by default
 as the ISO specification suggests. The specification's suggestion to compute the scaling factor as
-elevation in meters divided by 10 is adopted. Elevation scaled speed is not used for examine and
-examine like navigation modes. Even when elevation scaling of speed is turned on users still can
+elevation in meters divided by 10 is adopted. Elevation scaled speed is not used for EXAMINE and
+EXAMINE-like navigation modes. Even when elevation scaling of speed is turned on users still can
 modify their speeds by a user speed factor, eg. with the +/- keys. This is accomplished by treating
-elevation scaled speed not as absolute speed but as a factor to the user defined speed. 
+elevation-scaled speed not as absolute speed but as a factor to the user defined speed. 
 
 The ISO specification does not elaborate on if or how elevation scaling should be updated during
 navigation. For many purposes it may suffice to base initial navigation speed on the elevation of
@@ -332,7 +330,7 @@ assume that the Up direction aligns with the positive Y axis to work correctly.
 
 \subsection{GeoPositionInterpolator}
 
-The GeoPositionInterpolator node works similar to the PositionInterpolator node. It interpolates
+The GeoPositionInterpolator node works in a manner similar to the PositionInterpolator node. It interpolates
 between geospatial coordinates and outputs both coordinates in the specified reference system
 (geoSystem) and also scene coordinates. The ISO specification is very clear that the
 geovalue\_changed field contains the interpolated geo-coordinates. The specification wording for
@@ -344,7 +342,7 @@ when provided.
 The specification is silent on what kind of interpolation is provided by the node. Early
 \cite{reddy2000} and most existing implementations (xj3d, freewrl) of the node use linear
 interpolation of the coordinates, before their transformation to geocentric coordinates. On a planar
-surface or for small distances on the geoid, this makes sense and is what would be expected. Going
+surface or for small distances on the geoid, this makes sense and is what would be expected. However when going
 to large distances on the geoid, for example when looking at an intercontinental flight path or at
 satellite tracks, interpolation along the great circle arc between two points becomes more
 desirable. A great circle measures the shortest distance between two points on a sphere and is what
@@ -368,7 +366,7 @@ GeoViewpoint example scene at the web3d archive.} \label{fig:GeoPositionInterpol
 In detail, the code first transforms all key values to geocentric coordinates to a new array when
 the node is encountered or was changed.  For great circle interpolation, the code then interpolates
 the geocentric coordinates for the requested key using this new array via a slerp algorithm
-\cite{shoemake1985} which has the property of constant speed, eg. linearly interpolates the arc angle
+\cite{shoemake1985} which has the property of constant speed, e.g. linearly interpolates the arc angle
 between two key positions. The geovalue\_changed output is derived from the interpolated geocentric
 coordinates by inverse projection depending on the geoSystem. Finally, the  value\_changed output is
 computed from the interpolated geocentric coordinates by taking into account a GeoOrigin if
@@ -389,7 +387,7 @@ independent of its type.
 
 \section{Experimental Nodes}
 
-The X3D PROTO and related nodes were designed to and have been used extensively in the past to allow the declaration of experimental nodes with specific and rich functionality. X3DOM does not offer a PROTO node but we found it quite possible to implement custom nodes by following existing coding patterns in this open source project.
+The X3D PROTO (Prototype) and related nodes were designed to and have been used extensively in the past to allow the declaration of experimental nodes with specific and rich functionality. X3DOM does not offer a PROTO node but we found it quite possible to implement custom nodes by following existing coding patterns in this open source project.
 
 \subsection{GeoOriginTransform}
 
@@ -406,7 +404,7 @@ non-geospatial nodes together with geospatial nodes using the same GeoOrigin. Th
 the option to ignore the GeoOrigin translation and just apply the rotateYUp rotation for the 
 situation where the non-geospatial node's coordinates already account for this translation.
 
-The X3DOM implementation derives the node from node X3DTransformNode and first defines the two fields it uses: GeoOrigin of type SFNode and OnlyYUp of type SFBool. X3DOM expects from such a transform node functions to return a transformation matrix and to update this matrix when an input field is changed. Thus, we define these functions, compute the proper transformation matrix based on the position of the provided GeoOrigin and return it. These few steps proved to be sufficient to arrive at the desired functionality with very reasonable effort.
+The X3DOM implementation derives the node from node X3DTransformNode and first defines the two fields it uses: GeoOrigin of type SFNode and onlyYUp of type SFBool. X3DOM expects from such a transform node functions to return a transformation matrix and to update this matrix when an input field is changed. Thus, we define these functions, compute the proper transformation matrix based on the position of the provided GeoOrigin and return it. These few steps proved to be sufficient to arrive at the desired functionality with very reasonable effort.
 
 \subsection{GeoWebMap}
 
@@ -433,8 +431,8 @@ source project. It includes a web-based graphical user interface where X3D Geosp
 integrated to enable 3D geospatial data visualization. As described in \cite{mccann14} high
 resolution terrain mesh data in geocentric coordinates is combined with geometry built from latitude
 and longitude coordinates. Two specific benefits resulting from the improvements described in this
-paper ar 1) a GeoOrigin can be specified in situations where high spatial precision is required and
-2) GeoViewpoint, with a child GeoOrigin node, provides proper orientation of the +Y axis for fly
+paper are (1) a GeoOrigin can be specified in situations where high spatial precision is required and
+(2) GeoViewpoint, with a child GeoOrigin node, provides proper orientation of the +Y axis for fly
 mode navigation.
 
 \begin{figure}[htbp] \centering \includegraphics[width=3.3in]{Application_STOQS.png} \caption{The
@@ -445,7 +443,7 @@ is frame from a video about the STOQS project that may be viewed on YouTube.}
 Another simple use case is the easily deployable and accessible visualization of the Community Fault
 Model for Southern California \cite{plesch07} which is a foundational data set for earthquake
 science and used by diverse set of geoscientists. Using the X3DOM geospatial component it was
-possible to make available multiple versions of the data set using limited resources under dead line
+possible to make available multiple versions of the data set using limited resources under deadline
 pressure \cite{sger14}.
 
 \begin{figure}[htbp] \centering \includegraphics[width=3.0in]{Application_SCEC.png} \caption{The X3D
@@ -460,7 +458,7 @@ We present new implementations of important X3D nodes which enable a large class
 applications in standard web browsers. In our implementations of the GeoOrigin, GeoLocation,
 GeoViewpoint and GeoPositionInterpolator nodes, we fully conform to the ISO specification and use
 example scenes from well known sources as references for correctness. We demonstrate that limited
-precision in the WebGL rendering pipeline still make the availability of a GeoOrigin desirable at
+precision in the WebGL rendering pipeline still makes the availability of a GeoOrigin desirable at
 least until alternative solutions are formalized and coded. GeoLocation and GeoViewpoint nodes
 require specific alignments of coordinate systems which we document in detail including the
 treatment of the rotateYUp field. In addition, GeoViewpoint has the property to control navigation

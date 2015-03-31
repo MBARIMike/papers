@@ -55,9 +55,9 @@ and GeoPositionInterpolator nodes}
 
 
 \author{Andreas Plesch\thanks{e-mail: andreasplesch@gmail.com}\\Harvard University \and Mike
-McCann\thanks{e-mail: mccann@mbari.org}\\MBARI \and Don Brutzman\thanks{e-mail:
-brutzman@nps.edu}\\Naval Postgraduate School}
+McCann\thanks{e-mail: mccann@mbari.org}\\MBARI 
 
+%% \and Don Brutzman\thanks{e-mail: brutzman@nps.edu}\\Naval Postgraduate School}
 
 %% Keywords that describe your work.
 
@@ -418,6 +418,8 @@ The implementation uses the X3DOM GeoElevationGrid node code as a template. It t
 
 The implementation of this node required in depth experience with the X3DOM code base which can at this point be most efficiently gained by studying it. We did not attempt to define this or a similar node using PROTO functionality but given the need to support a new coordinate projection, to procedurally generate coordinates and to use a web page canvas as a texture we conjecture that such an attempt would be similarly challenging or even require changes to the underlying implementations of used nodes.  
 
+Several years of work in the X3D Geospatial Working Group focused on development of X3D Earth models, namely large complex datasets of combined terrain-geometry and overlay-imagery files \cite{yoo12}.  With geospatial resolutions varying over many orders of magnitude, these goals posed daunting challenges.  The primary design limitation of such an approach was the constraint to co-optimize specific terrain and imagery datasets in tandem.  The limited nature of GeoLOD requiring sequential loading of each set of parent-child nodes based on user proximity further complicated this work.  Such efforts resulted in Earth models that were extremely large, typically constrained to preprocessing specific datasets, and not very scalable.  The decoupling of polygonal meshes from texture maps provided by GeoWebMap offers the possibility of independently optimizable terrain geometry and overlay imagery, occurring at a variety of resolutions and compression factors. The GeoWebMap node approach presents a promising avenue for continued work.
+
 \section{Applications}
 
 The availability of the geospatial component in a web browser via X3DOM allows for development of
@@ -452,7 +454,6 @@ earthquake faults in California by just opening a web page.} \label{fig:Applicat
 \end{figure}
 
 
-
 \section{Summary}
 
 We present new implementations of important X3D nodes which enable a large class of geospatial
@@ -471,10 +472,9 @@ path in global scenes. Finally, all functionality was integrated into current, s
 the X3DOM distribution available from www.x3dom.org.
 
 
+\section{Acknowledgements}
 
-
-
-
+This work was made possible by support from the Monterey Bay Aquarium Research Institute to both authors. It was inspired by and depends heavily on Byounghyun Yoo's initial work on the X3DOM geospatial component. The manuscript benefited greatly from contributions by Don Brutzman, Naval Postgraduate School.
 
 \bibliographystyle{acmsiggraph} \nocite{*} \bibliography{X3DGeospatialComponent}
 

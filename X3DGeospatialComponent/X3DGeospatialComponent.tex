@@ -170,7 +170,7 @@ by user views and user interaction hints.
 
 \section{The Nodes}
 
-While X3DOM had partial geospatial functionality before our implementation work, X3DOM did not include
+While X3DOM had substantial geospatial functionality before our implementation work, X3DOM did not include
 functional code for any of the nodes described below. The current X3DOM distribution contains
 our implementation of these nodes. Here we focus on explaining
 the details on how node functionality was interpreted in our implementation rather than focus on 
@@ -344,7 +344,7 @@ provides scene coordinates. Scene coordinates are geocentric coordinates adjuste
 when provided.
 
 The specification is silent on what kind of interpolation is provided by the node. Early
-\cite{reddy2000} and most existing implementations (xj3d, freewrl) of the node use linear
+\cite{reddy2000} and most existing implementations (xj3d, freewrl, BS Content Geo) of the node use linear
 interpolation of the coordinates, before their transformation to geocentric coordinates. On a planar
 surface or for small distances on the geoid, this makes sense and is what would be expected. However when going
 to large distances on the geoid, for example when looking at an intercontinental flight path or at

@@ -130,7 +130,7 @@ accessible by the availability of X3DOM, an openly developed JavaScript X3D inte
 \cite{behr09}, while WebGL became a standard feature in web browsers. X3D is designed to be modular
 \cite{x3d05} and retains geospatial functionality in a dedicated geospatial component. Here, we
 present new implementations of important nodes of the geospatial component within the X3DOM code
-framework. We chose the X3DOM code frameworks due to its openness, extensibility and user-friendly nature. 
+framework. We chose the X3DOM code frameworks due to its openness, extensibility and user-friendly nature.
 
 \section{Motivation}
 
@@ -170,6 +170,12 @@ by user views and user interaction hints.
 
 \section{The Nodes}
 
+While X3DOM had partial geospatial functionality before our implementation work, X3DOM did not include
+functional code for any of the nodes described below. The current X3DOM distribution contains
+our implementation of these nodes. Here we focus on explaining
+the details on how node functionality was interpreted in our implementation rather than focus on 
+javascript language or performance aspects of the code.
+
 \subsection{The geocentric coordinate system}
 
 Before we present details on functionality and implementation of the newly available nodes, it is
@@ -200,7 +206,6 @@ on to the rendering pipeline for greater precision (Fig.~\ref{fig:GeoOriginDiagr
   architectural X3D scene (x3dom.org) without (left) and with (right) use of a GeoOrigin node.
 Without GeoOrigin lack of precision leads to rendering artifacts.} \label{fig:GeoOriginImage}
 \end{figure}
-
 
 A peculiar feature of the GeoOrigin node is that although only a single definition of it is sensible
 in a geospatial scene, it needs to be provided for each node separately as a child node.
@@ -237,7 +242,6 @@ inverted and applied to each vertex of the node.
 
 Alternatives to solving the precision issue exist \cite{mccann09} but still
 need refinement and implementation.
-
 
 \subsection{GeoLocation}
 

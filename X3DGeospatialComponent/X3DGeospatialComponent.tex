@@ -130,8 +130,7 @@ accessible by the availability of X3DOM, an openly developed JavaScript X3D inte
 \cite{behr09}, while WebGL became a standard feature in web browsers. X3D is designed to be modular
 \cite{x3d05} and retains geospatial functionality in a dedicated geospatial component. Here, we
 present new implementations of important nodes of the geospatial component within the X3DOM code
-framework.
-
+framework. We chose the X3DOM code frameworks due to its openness, extensibility and user-friendly nature.
 
 \section{Motivation}
 
@@ -151,8 +150,9 @@ visualization environment since the shape of the geoid is not suited to faithful
 time it is part of the full X3D scene graph which provides the basis for interactive modes of
 exploration of geospatial data sets which are generally not targeted by GIS. At a practical level,
 essentially unlimited sharing of visualizations of geospatial 3D data sets becomes straightforward
-with the use of the X3DOM geospatial component and world wide web technologies.
-
+with the use of the X3DOM geospatial component and world wide web technologies. In addition, alternative
+geospatially enabled X3D browsers for the web exist \cite{bitmanagement15} which may reduce the risk for
+content developers to become overly dependent on a single implementation.
 
 \section{The X3D geospatial component and digital globes}
 
@@ -169,6 +169,12 @@ overlays, buildings, roads, surface features, sensor data, and vehicles of all t
 by user views and user interaction hints.
 
 \section{The Nodes}
+
+While X3DOM had substantial geospatial functionality before our implementation work, X3DOM did not include
+functional code for any of the nodes described below. The current X3DOM distribution contains
+our implementation of these nodes. Here we focus on explaining
+the details on how node functionality was interpreted in our implementation rather than focus on 
+javascript language or performance aspects of the code.
 
 \subsection{The geocentric coordinate system}
 
@@ -200,7 +206,6 @@ on to the rendering pipeline for greater precision (Fig.~\ref{fig:GeoOriginDiagr
   architectural X3D scene (x3dom.org) without (left) and with (right) use of a GeoOrigin node.
 Without GeoOrigin lack of precision leads to rendering artifacts.} \label{fig:GeoOriginImage}
 \end{figure}
-
 
 A peculiar feature of the GeoOrigin node is that although only a single definition of it is sensible
 in a geospatial scene, it needs to be provided for each node separately as a child node.
@@ -237,7 +242,6 @@ inverted and applied to each vertex of the node.
 
 Alternatives to solving the precision issue exist \cite{mccann09} but still
 need refinement and implementation.
-
 
 \subsection{GeoLocation}
 
@@ -340,7 +344,7 @@ provides scene coordinates. Scene coordinates are geocentric coordinates adjuste
 when provided.
 
 The specification is silent on what kind of interpolation is provided by the node. Early
-\cite{reddy2000} and most existing implementations (xj3d, freewrl) of the node use linear
+\cite{reddy2000} and most existing implementations (xj3d, freewrl, BS Content Geo) of the node use linear
 interpolation of the coordinates, before their transformation to geocentric coordinates. On a planar
 surface or for small distances on the geoid, this makes sense and is what would be expected. However when going
 to large distances on the geoid, for example when looking at an intercontinental flight path or at
